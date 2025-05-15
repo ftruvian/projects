@@ -24,13 +24,9 @@ bool out;
 		printf ("\n (3) Multiply\t");
 		printf ("\n (4) Divide\n");
 		scanf ("%d", &choice);
-	 
-		// exit signal
-	  if (choice == 6)
-      out = true;
-
+	
     // value selector
-    else if (choice < 5 && choice > 0) {
+    if (choice < 5 && choice > 0) {
       printf ("\ninput first value and second value to do the operation\n");
       scanf ("%f %f", &base, &base2);
 
@@ -49,8 +45,6 @@ bool out;
           res = div (base, base2);
           break;
     }
-      // result aggregate
-      printf ("%10.2f\n", res);
     }
 
 		// power selector
@@ -58,9 +52,14 @@ bool out;
       printf ("\ninput first value as base and second value as power\n");
       scanf ("%f %d", &base, &pow);
       res = power (base, pow);
-  		// result aggregate
-  		printf ("%10.2f\n", res);
     }
+
+		// exit signal
+		else if (choice == 6)
+			out = true;
+
+		// result aggregate
+		printf ("%10.2f\n", res);
 		}
 	}
 
@@ -91,18 +90,13 @@ float div (float a, float b) {
 // power function
 float power (float a, int b) {
   float res;
-  if (b == 0) {
+  if (b == 1) {
     printf ("hello");
-    return (1);
+    return (a);
   }
   else {
-    if (b == 1) {
-      return (a);
-    }
-    else if (b > 1) {
-    res = a * power (a, --b);
-    return (res);
-    }
+    res = a * power (a, b --);
+    return (res); 
   }
 } 
 
